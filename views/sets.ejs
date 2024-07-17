@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LEGO Sets</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e1e10f;
+    }
+    .navbar {
+      background-color: darkgray;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .navbar a {
+      color: white;
+      padding: 15px;
+      text-decoration: none;
+    }
+    .navbar a.active {
+      background-color: lightskyblue;
+      border-radius: 4px;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 20px;
+      background-color: gray;
+      color: white;
+      padding: 50px 20px;
+      border-radius: 8px;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin: 0;
+    }
+    .hero .btn {
+      background-color: lightskyblue;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 20px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .hero .btn:hover {
+      background-color: lightskyblue;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 15px;
+      text-align: left;
+      border-bottom: 1px solid lightgray;
+    }
+    th {
+      background-color: darkgray;
+      color: white;
+    }
+    tr:hover {
+      background-color: lightgray;
+    }
+    .btn {
+      background-color: lightskyblue;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .btn:hover {
+      background-color: lightskyblue;
+    }
+    img {
+      max-width: 100px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/navbar', { page: '/lego/sets' }) %>
+  <div class="container">
+    <div class="hero">
+      <h1>Explore the Lego Collection</h1>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Name</th>
+          <th>Theme</th>
+          <th>Year</th>
+          <th>Number of Parts</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% sets.forEach(set => { %>
+          <tr>
+            <td><img src="<%= set.img_url %>" alt="<%= set.name %>"></td>
+            <td><%= set.name %></td>
+            <td><a class="btn" href="/lego/sets?theme=<%= set.theme %>"><%= set.theme %></a></td>
+            <td><%= set.year %></td>
+            <td><%= set.num_parts %></td>
+            <td><a class="btn" href="/lego/sets/<%= set.set_num %>">Details</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
